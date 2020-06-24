@@ -640,8 +640,8 @@ public final class FaceActivity extends AppCompatActivity implements SurfaceHold
 
                                             if (from.equals("register")) {
                                                 Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
-                                                Intent myIntent = new Intent(FaceActivity.this, MainActivity.class);
-                                                startActivity(myIntent);
+                                                //Intent myIntent = new Intent(FaceActivity.this, MainActivity.class);
+                                                //startActivity(myIntent);
                                                 finish();
                                             } else {
                                                 matchingFaces();

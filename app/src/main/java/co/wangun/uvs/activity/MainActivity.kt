@@ -9,7 +9,6 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -136,23 +135,23 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        clear.setOnClickListener {
-
-            // remove local face
-            val file = File(sessionManager?.getPath(), "register.jpg")
-            if (file.exists()) {
-                file.delete()
-            }
-
-            // clear session
-            sessionManager?.clearSession()
-            recreate()
-            Toast.makeText(
-                    this,
-                    "Data cleared", Toast.LENGTH_SHORT
-                )
-                .show()
-        }
+//        clear.setOnClickListener {
+//
+//            // remove local face
+//            val file = File(sessionManager?.getPath(), "register.jpg")
+//            if (file.exists()) {
+//                file.delete()
+//            }
+//
+//            // clear session
+//            sessionManager?.clearSession()
+//            recreate()
+//            Toast.makeText(
+//                    this,
+//                    "Data cleared", Toast.LENGTH_SHORT
+//                )
+//                .show()
+//        }
     }
 
     private fun requestPermission() {
@@ -213,5 +212,13 @@ class MainActivity : AppCompatActivity() {
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         override fun onProviderEnabled(provider: String) {}
         override fun onProviderDisabled(provider: String) {}
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Close application?")
+            .setPositiveButton("Yes") { _, _ -> finishAffinity() }
+            .setNegativeButton("No") { _, _ -> }
+            .create().show()
     }
 }

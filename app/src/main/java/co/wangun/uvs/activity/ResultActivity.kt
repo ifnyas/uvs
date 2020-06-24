@@ -3,7 +3,6 @@ package co.wangun.uvs.activity
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import co.wangun.uvs.R
 import co.wangun.uvs.api.ApiClient.client
@@ -11,11 +10,9 @@ import co.wangun.uvs.api.ApiService
 import co.wangun.uvs.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_result.*
 import okhttp3.ResponseBody
-import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.IOException
 
 class ResultActivity : AppCompatActivity() {
 
@@ -79,23 +76,14 @@ class ResultActivity : AppCompatActivity() {
                     response: Response<ResponseBody>
                 ) {
                     if (response.isSuccessful) {
-
                         try {
-                            //val jsonRESULTS = JSONObject(response.body()!!.string())
-                            Toast.makeText(
-                                applicationContext,
-                                "Notification Sent",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } catch (e: JSONException) {
-                            e.printStackTrace()
-                        } catch (e: IOException) {
+                        } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     }
                 }
 
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                override fun onFailure(c: Call<ResponseBody>, t: Throwable) {
                     t.printStackTrace()
                 }
             })

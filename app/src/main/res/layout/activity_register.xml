@@ -30,7 +30,7 @@
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="Account Registration"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorBlack" />
 
         <TextView
@@ -57,13 +57,28 @@
             android:maxLines="1"
             android:textAlignment="center" />
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:alpha="0.33"
-            android:padding="80dp"
-            android:src="@drawable/logo" />
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:alpha="0.16"
+                android:src="@drawable/logo" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/nextBtn"

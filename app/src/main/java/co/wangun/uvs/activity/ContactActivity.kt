@@ -18,13 +18,19 @@ import java.util.*
 
 class ContactActivity : AppCompatActivity() {
 
+    private lateinit var sessionManager: SessionManager
     var ready = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
 
-        val sessionManager = SessionManager(this)
+        initFun()
+    }
+
+    private fun initFun() {
+
+        sessionManager = SessionManager(this)
 
         name.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {}
@@ -41,17 +47,18 @@ class ContactActivity : AppCompatActivity() {
             }
         })
 
-        var name: String
-
         notFound.setOnClickListener {
+
+            var nameStr: String
             val nameEdit = EditText(this)
+
             AlertDialog.Builder(this)
                 .setMessage("What's his/her name?")
                 .setView(nameEdit)
                 .setPositiveButton("NEXT") { _, _ ->
-                    name = nameEdit.text.toString()
-                    if (name.isNotBlank()) {
-                        sessionManager.putTarget(name)
+                    nameStr = nameEdit.text.toString()
+                    if (nameStr.isNotBlank()) {
+                        sessionManager.putTarget(nameStr)
                     } else {
                         sessionManager.putTarget("Mr. Anon")
                     }
@@ -93,6 +100,10 @@ class ContactActivity : AppCompatActivity() {
                     cal.get(Calendar.DAY_OF_MONTH)
                 ).show()
             }
+        }
+
+        backButton.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -159,6 +170,14 @@ class ContactActivity : AppCompatActivity() {
                 finish()
             }
             .setNegativeButton("CANCEL") { _, _ -> }
+            .create().show()
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Back to menu?")
+            .setPositiveButton("Yes") { _, _ -> finish() }
+            .setNegativeButton("No") { _, _ -> }
             .create().show()
     }
 }

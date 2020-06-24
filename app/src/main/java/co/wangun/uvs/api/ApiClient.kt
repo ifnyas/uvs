@@ -19,7 +19,7 @@ object ApiClient {
                 .build()
 
             var baseUrl = "http://face.wangun.co/"
-            baseUrl = "https://console.wablas.com"
+            baseUrl = "https://ampel.wablas.com/"
 
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
